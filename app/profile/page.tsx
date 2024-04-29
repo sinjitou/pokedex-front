@@ -9,11 +9,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { trainer, isLoggedIn } from "@/lib/fake.json";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import Image from "next/image";
+import { redirect } from "next/navigation";
+const { imgUrl } = trainer;
 export default function Pokedex() {
+  if (!isLoggedIn) redirect("/");
+
   return (
     <main className="mt-24">
       <div className="flex items-center mb-4 mx-4">
@@ -47,8 +52,16 @@ export default function Pokedex() {
               <CardHeader>
                 <CardTitle>Mon profil dresseur</CardTitle>
               </CardHeader>
-              {/* todo image */}
               <CardContent className="space-y-2">
+                <div className="w-full flex justify-center">
+                  <Image
+                    src={imgUrl}
+                    alt="pokemon"
+                    width={100}
+                    height={100}
+                    className="rounded-full object-cover aspect-square"
+                  />
+                </div>
                 <div className="space-y-1">
                   <Label htmlFor="current">Nom</Label>
                   <Input

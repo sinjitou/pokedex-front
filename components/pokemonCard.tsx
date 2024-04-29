@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { user } from "@/lib/fake.json";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
@@ -7,6 +7,7 @@ import { PokemonInterface } from "@/lib/interfaces";
 import { MyTooltip } from "./ui/myTooltip";
 import { IoIosAdd } from "react-icons/io";
 import typesEmoji from "@/lib/typeEmojis.json";
+const { isAdmin } = user;
 
 export function PokemonCard({
   pokemon,
@@ -45,21 +46,7 @@ export function PokemonCard({
           </div>
         </div>
         <div className="w-full flex justify-end mt-4">
-          {catched ? (
-            <p>Attrapé</p>
-          ) : seen ? (
-            <div className="flex items-center gap-4">
-              <p>Vu</p>
-              <Button variant="outline" className="w-24 flex items-center">
-                Attraper
-              </Button>
-            </div>
-          ) : (
-            // todo new button
-            <Button variant="outline" className="w-24 flex items-center">
-              <IoIosAdd /> Ajouter
-            </Button>
-          )}
+          {catched ? <p>Attrapé</p> : seen ? <p>Vu</p> : <p>Sauvage</p>}
         </div>
       </CardFooter>
     </Card>

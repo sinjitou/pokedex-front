@@ -18,7 +18,7 @@ export default function HomeBg() {
               }}
             />
           </div>
-          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+          <div className="mx-auto max-w-2xl">
             <div className="text-center">
               <iframe
                 src="https://giphy.com/embed/uLnPIWsqIz2aA"
@@ -30,17 +30,6 @@ export default function HomeBg() {
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 Tes pokemons partout, tout le temps avec toi !
               </p>
-              <div className="mt-10 flex items-center justify-center gap-x-6">
-                <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                  <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                    Commence à les attraper maintenant !{" "}
-                    <a href="#" className="font-semibold text-indigo-600">
-                      <span className="absolute inset-0" aria-hidden="true" />
-                      Commencer <span aria-hidden="true">&rarr;</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
           <div

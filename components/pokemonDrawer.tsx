@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +18,11 @@ import { IoIosAdd } from "react-icons/io";
 import { Separator } from "./ui/separator";
 import { IoInformationCircle } from "react-icons/io5";
 import { IoPlayCircleOutline } from "react-icons/io5";
+import { user } from "@/lib/fake.json";
+import { Trash } from "lucide-react";
+import { CgTrash } from "react-icons/cg";
+
+const { isAdmin } = user;
 
 export function PokemonDrawer({
   children,
@@ -90,23 +96,57 @@ export function PokemonDrawer({
           </p>
         </div>
         <Separator />
-        <SheetFooter className="mt-4 flex flex-row align-center justify-end gap-2">
+        <SheetFooter className="mt-4 flex flex-row flex-wrap align-center justify-end gap-2">
           <Button variant="outline" className="w-auto flex items-center">
             <IoPlayCircleOutline />
           </Button>
+          {isAdmin && (
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              variant="outline"
+              className=" flex items-center bg-red-500 hover:bg-red-900 text-white hover:text-white"
+            >
+              <CgTrash /> Supprimer
+            </Button>
+          )}
           {catched ? (
             <p>Attrapé</p>
           ) : seen ? (
             <div className="flex items-center gap-4">
               <p>Vu</p>
-              <Button variant="outline" className="w-24 flex items-center">
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                variant="outline"
+                className="w-24 flex items-center"
+              >
                 Attraper
               </Button>
             </div>
           ) : (
-            <Button variant="outline" className="w-24 flex items-center">
-              <IoIosAdd /> Ajouter
-            </Button>
+            <div className="flex items-center gap-4">
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                variant="outline"
+                className="w-24 flex items-center"
+              >
+                <IoIosAdd /> Vu
+              </Button>
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                variant="outline"
+                className="w-24 flex items-center"
+              >
+                <IoIosAdd /> Attraper
+              </Button>
+            </div>
           )}
         </SheetFooter>
       </SheetContent>
