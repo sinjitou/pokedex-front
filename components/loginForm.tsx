@@ -1,5 +1,6 @@
 import { apiRequest } from "@/lib/apiRequest";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function LoginForm({
   setModalIsOpen,
@@ -19,7 +20,15 @@ export default function LoginForm({
         login: { username, password },
         method: "GET",
       });
-      console.log({ res });
+      if (res.status === 200) {
+        setModalIsOpen(false);
+        localStorage.setItem(
+          "login",
+          JSON.stringify({ login: username, password })
+        );
+        return;
+      }
+      toast.error("Utilisateur ou mot de passe incorrect");
     } catch (error) {
       console.log(error);
     }
