@@ -1,3 +1,4 @@
+"use client";
 import { User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -9,14 +10,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { trainer, isLoggedIn } from "@/lib/fake.json";
+import { trainer } from "@/lib/fake.json";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { useContext } from "react";
+import { AppContext } from "@/components/provider/Provider";
 const { imgUrl } = trainer;
 export default function Pokedex() {
+  const { isLoggedIn } = useContext(AppContext);
   if (!isLoggedIn) redirect("/");
 
   return (

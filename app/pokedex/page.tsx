@@ -1,13 +1,17 @@
+"use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PokemonInterface } from "@/lib/interfaces";
-import { isLoggedIn } from "@/lib/fake.json";
 import { CgPokemon } from "react-icons/cg";
 import { pokemons as pkmns } from "@/lib/fake.json";
 import { PokemonDrawer } from "@/components/pokemonDrawer";
 import { PokemonCard } from "@/components/pokemonCard";
 import { redirect } from "next/navigation";
+import { useContext } from "react";
+import { AppContext } from "@/components/provider/Provider";
 
 export default function Pokedex() {
+  const { isLoggedIn } = useContext(AppContext);
+
   if (!isLoggedIn) redirect("/");
 
   const pokemonsCatched: PokemonInterface[] = pkmns?.slice(24, 28);

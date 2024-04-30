@@ -1,19 +1,21 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { isLoggedIn, user } from "@/lib/fake.json";
+import { user } from "@/lib/fake.json";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { SearchBar } from "./searchBar";
 import {} from "next/font/google";
 import { MyDrownDownMenu } from "./myDropdownMenu";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LoginForm from "./loginForm";
 import AddPokemonModal from "./addPokemonModal";
+import { AppContext } from "./provider/Provider";
 
 export default function Header() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpenAddPkm, setModalIsOpenAddPkm] = useState(false);
+  const { isLoggedIn } = useContext(AppContext);
 
   return (
     <>
@@ -28,7 +30,7 @@ export default function Header() {
                 className="h-8 w-auto"
                 width={100}
                 height={100}
-                src="/images/pokeball.png"
+                src="/pokedex-front/images/pokeball.png"
                 alt="company"
               />
               <span className="hidden sm:inline font-bold text-xl text-indigo-900">

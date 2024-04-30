@@ -1,3 +1,4 @@
+"use client";
 import { LogOut, User } from "lucide-react";
 import { CgPokemon } from "react-icons/cg";
 
@@ -11,6 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { useContext } from "react";
+import { AppContext } from "./provider/Provider";
 
 export function MyDrownDownMenu({
   children,
@@ -19,6 +22,8 @@ export function MyDrownDownMenu({
   children: React.ReactNode;
   name: string;
 }) {
+  const { setIsLoggedIn } = useContext(AppContext);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
@@ -39,7 +44,10 @@ export function MyDrownDownMenu({
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuItem className="text-red-700">
+        <DropdownMenuItem
+          onClick={() => setIsLoggedIn(false)}
+          className="text-red-700"
+        >
           <LogOut className="mr-2 h-4 w-4" />
           <span>Se déconnecter</span>
         </DropdownMenuItem>

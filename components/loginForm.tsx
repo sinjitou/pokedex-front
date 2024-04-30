@@ -1,3 +1,6 @@
+"use client";
+import { AppContext } from "./provider/Provider";
+import { useContext } from "react";
 import { apiRequest } from "@/lib/apiRequest";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -9,11 +12,19 @@ export default function LoginForm({
 }) {
   const [IsSignUpForm, setIsSignUpForm] = useState<boolean>(false);
 
+  const { setIsLoggedIn } = useContext(AppContext);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const username = data.get("username") as string;
     const password = data.get("password") as string;
+    if (process.env.ENVIRONNEMENT === "production") {
+      setModalIsOpen(false);
+      setIsLoggedIn(true);
+      toast.success("Connexion reussi!");
+      return;
+    }
     try {
       const res = await apiRequest({
         path: IsSignUpForm ? "/users/register" : "/users/login",
@@ -22,10 +33,8 @@ export default function LoginForm({
       });
       if (res.status === 200) {
         setModalIsOpen(false);
-        localStorage.setItem(
-          "login",
-          JSON.stringify({ login: username, password })
-        );
+        setIsLoggedIn(true);
+        toast.success("Connexion reussie");
         return;
       }
       toast.error("Utilisateur ou mot de passe incorrect");

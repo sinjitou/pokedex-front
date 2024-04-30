@@ -8,8 +8,10 @@ const nextConfig = {
       },
     ],
   },
+  basePath: "/pokedex-front",
   env: {
     SERVER_URL: process.env.SERVER_URL,
+    ENVIRONNEMENT: process.env.ENVIRONNEMENT,
   },
 };
 
