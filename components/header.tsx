@@ -14,8 +14,6 @@ import AddPokemonModal from "./addPokemonModal";
 export default function Header() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpenAddPkm, setModalIsOpenAddPkm] = useState(false);
-  const userLS = JSON.parse(localStorage.getItem("login") || "{}") || user;
-  const isLog = Boolean(localStorage.getItem("login")) || isLoggedIn;
 
   return (
     <>
@@ -49,17 +47,17 @@ export default function Header() {
           </div>
 
           <div className="flex flex-1 justify-end">
-            {isLog ? (
+            {isLoggedIn ? (
               <nav className="flex items-center space-x-4">
                 <SearchBar setModalIsOpen={setModalIsOpenAddPkm} />
-                <MyDrownDownMenu name={userLS?.login}>
+                <MyDrownDownMenu name={user?.login}>
                   <Avatar>
                     <AvatarImage
-                      src={`https://api.dicebear.com/8.x/thumbs/png?seed=${userLS?.login}&backgroundType=gradientLinear&shapeColor=FF1B1C&backgroundColor=D01010`}
+                      src={`https://api.dicebear.com/8.x/thumbs/png?seed=${user?.login}&backgroundType=gradientLinear&shapeColor=FF1B1C&backgroundColor=D01010`}
                       alt="avatar"
                     />
                     <AvatarFallback>
-                      {userLS?.login?.slice(0, 2)?.toUpperCase()}
+                      {user?.login?.slice(0, 2)?.toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
                 </MyDrownDownMenu>

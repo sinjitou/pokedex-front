@@ -1,4 +1,3 @@
-"use client";
 import { User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -18,9 +17,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 const { imgUrl } = trainer;
 export default function Pokedex() {
-  const isLog = Boolean(localStorage.getItem("login")) || isLoggedIn;
-
-  if (!isLog) redirect("/");
+  if (!isLoggedIn) redirect("/");
 
   return (
     <main className="mt-24">
