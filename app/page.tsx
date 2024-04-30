@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { AuroraBackground } from "@/components/animated-background";
 import HomeBg from "@/components/homeBg";
 import Image from "next/image";
@@ -7,12 +7,12 @@ import Pokemons from "@/components/Pokemons";
 import { Toaster } from "sonner";
 
 export default function Home() {
-  const isLog = Boolean(localStorage.getItem("login")) || isLoggedIn;
+  // const isLog = Boolean(localStorage.getItem("login")) || isLoggedIn;
 
   return (
     <>
-      {isLog ? <Pokemons /> : <HomeBg />}
-      <Toaster richColors />
+      {/* {isLog ? <Pokemons /> : <HomeBg />}
+      <Toaster richColors /> */}
     </>
   );
 }

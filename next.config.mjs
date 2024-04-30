@@ -11,9 +11,6 @@ const nextConfig = {
   env: {
     SERVER_URL: process.env.SERVER_URL,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
 };
 
 export default nextConfig;
