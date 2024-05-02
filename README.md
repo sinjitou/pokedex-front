@@ -9,7 +9,7 @@ Enfin, pour lancer le projet, faites :
 npm run dev
 ```
 
-Ensuite, ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+Ensuite, ouvrez [http://localhost:3000/pokedex-front](http://localhost:3000/pokedex-front) dans votre navigateur.
 
 ## Github Page
 

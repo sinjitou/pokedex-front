@@ -13,6 +13,9 @@ const nextConfig = {
     SERVER_URL: process.env.SERVER_URL,
     ENVIRONNEMENT: process.env.ENVIRONNEMENT,
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 export default nextConfig;
