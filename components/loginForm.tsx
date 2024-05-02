@@ -19,39 +19,39 @@ export default function LoginForm({
     const data = new FormData(event.currentTarget);
     const username = data.get("username") as string;
     const password = data.get("password") as string;
-    if (process.env.ENVIRONNEMENT !== "dev") {
-      setModalIsOpen(false);
-      setIsLoggedIn(true);
-      localStorage.setItem(
-        "login",
-        JSON.stringify({ login: username, password })
-      );
+    // if (process.env.ENVIRONNEMENT !== "dev") {
+    setModalIsOpen(false);
+    setIsLoggedIn(true);
+    localStorage.setItem(
+      "login",
+      JSON.stringify({ login: username, password })
+    );
 
-      setUserData({ login: username, password });
+    setUserData({ login: username, password });
 
-      toast.success("Connexion reussi!");
-      return;
-    }
-    try {
-      const res = await apiRequest({
-        path: IsSignUpForm ? "/users/register" : "/users/login",
-        login: { username, password },
-        method: IsSignUpForm ? "POST" : "GET",
-      });
-      if (res.status === 200) {
-        setModalIsOpen(false);
-        setIsLoggedIn(true);
-        localStorage.setItem(
-          "login",
-          JSON.stringify({ login: username, password })
-        );
-        toast.success("Connexion reussie");
-        return;
-      }
-      toast.error("Utilisateur ou mot de passe incorrect");
-    } catch (error) {
-      console.log(error);
-    }
+    toast.success("Connexion reussi!");
+    // return;
+    // }
+    // try {
+    //   const res = await apiRequest({
+    //     path: IsSignUpForm ? "/users/register" : "/users/login",
+    //     login: { username, password },
+    //     method: IsSignUpForm ? "POST" : "GET",
+    //   });
+    //   if (res.status === 200) {
+    //     setModalIsOpen(false);
+    //     setIsLoggedIn(true);
+    //     localStorage.setItem(
+    //       "login",
+    //       JSON.stringify({ login: username, password })
+    //     );
+    //     toast.success("Connexion reussie");
+    //     return;
+    //   }
+    //   toast.error("Utilisateur ou mot de passe incorrect");
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   return (
