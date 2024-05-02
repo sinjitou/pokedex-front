@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+Le projet n'est pas relier au backend.
+Concernant le front, il faudra cloner localement le projet et faire un `npm install`.
+
+Enfin, pour lancer le projet, faites :
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ensuite, ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Github Page
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Le site est accessible au lien suivant : [https://sinjitou.github.io/pokedex-front/](https://sinjitou.github.io/pokedex-front/)
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+Le projet contient les fonctionnalités suivantes :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Connexion et inscription qui marche avec mon backend. Mais pour le rendu : fausse connexion où l'on rentre le ogin et mdp que l'on veut.
+- Liste de tous les pokemons avec un système de recherche et de pagination. C'est une liste json depuis le front. La fonctionnalité d'ajout de pokemon avec le bouton "+" en haut à droite en étant connecté n'affichera que la modal mais on ne pourra pas créer le pokemon.
+- Details d'un pokemon avec la liste des types, région et sa description.
+- On peut écouter la synthèse vocale de la description du pokemon (Seul à une description Bulbasaur) avec le bouton avec un icône "play"
+- On peut voir notre profil, mais pas le modifier
+- On peut voir notre faux profil, mais pas le changer.
+- On peut voir nos pokemons vus et attrapés, et aussi ajouter des pokemons à ces listes.
+- Pas de triage par type des pokemons.

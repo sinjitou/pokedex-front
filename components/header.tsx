@@ -15,7 +15,7 @@ import { AppContext } from "./provider/Provider";
 export default function Header() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpenAddPkm, setModalIsOpenAddPkm] = useState(false);
-  const { isLoggedIn } = useContext(AppContext);
+  const { isLoggedIn, userData } = useContext(AppContext);
 
   return (
     <>
@@ -55,11 +55,11 @@ export default function Header() {
                 <MyDrownDownMenu name={user?.login}>
                   <Avatar>
                     <AvatarImage
-                      src={`https://api.dicebear.com/8.x/thumbs/png?seed=${user?.login}&backgroundType=gradientLinear&shapeColor=FF1B1C&backgroundColor=D01010`}
+                      src={`https://api.dicebear.com/8.x/initials/png?seed=${userData?.login}&backgroundType=gradientLinear&shapeColor=FF1B1C&backgroundColor=D01010`}
                       alt="avatar"
                     />
                     <AvatarFallback>
-                      {user?.login?.slice(0, 2)?.toUpperCase()}
+                      {userData?.login?.slice(0, 2)?.toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
                 </MyDrownDownMenu>

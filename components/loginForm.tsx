@@ -12,16 +12,23 @@ export default function LoginForm({
 }) {
   const [IsSignUpForm, setIsSignUpForm] = useState<boolean>(false);
 
-  const { setIsLoggedIn } = useContext(AppContext);
+  const { setIsLoggedIn, setUserData } = useContext(AppContext);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const username = data.get("username") as string;
     const password = data.get("password") as string;
-    if (process.env.ENVIRONNEMENT === "production") {
+    if (process.env.ENVIRONNEMENT !== "dev") {
       setModalIsOpen(false);
       setIsLoggedIn(true);
+      localStorage.setItem(
+        "login",
+        JSON.stringify({ login: username, password })
+      );
+
+      setUserData({ login: username, password });
+
       toast.success("Connexion reussi!");
       return;
     }
@@ -29,11 +36,15 @@ export default function LoginForm({
       const res = await apiRequest({
         path: IsSignUpForm ? "/users/register" : "/users/login",
         login: { username, password },
-        method: "GET",
+        method: IsSignUpForm ? "POST" : "GET",
       });
       if (res.status === 200) {
         setModalIsOpen(false);
         setIsLoggedIn(true);
+        localStorage.setItem(
+          "login",
+          JSON.stringify({ login: username, password })
+        );
         toast.success("Connexion reussie");
         return;
       }

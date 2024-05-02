@@ -22,13 +22,13 @@ export function MyDrownDownMenu({
   children: React.ReactNode;
   name: string;
 }) {
-  const { setIsLoggedIn } = useContext(AppContext);
+  const { setIsLoggedIn, userData } = useContext(AppContext);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>{name}</DropdownMenuLabel>
+        <DropdownMenuLabel>{userData.login}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>

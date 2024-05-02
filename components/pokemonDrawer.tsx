@@ -21,35 +21,34 @@ import { IoPlayCircleOutline } from "react-icons/io5";
 import { user } from "@/lib/fake.json";
 import { Trash } from "lucide-react";
 import { CgTrash } from "react-icons/cg";
+import { AppContext } from "./provider/Provider";
+import { useContext } from "react";
 
 const { isAdmin } = user;
 
 export function PokemonDrawer({
   children,
   pokemon,
-  seen,
-  catched,
 }: {
   children: React.ReactNode;
   pokemon: PokemonInterface;
-  seen?: boolean;
-  catched?: boolean;
 }) {
+  const { setSeen, setCatched, seen, catched } = useContext(AppContext);
+  const isSeen = seen.includes(pokemon.id);
+  const isCatched = catched.includes(pokemon.id);
   const { name, types, regions, id, imgUrl, description } = pokemon || {};
   return (
     <Sheet>
-      <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent>
-        <div className="w-full">
-          <Image
-            key={id}
-            src={imgUrl}
-            alt={name}
-            className="w-full aspect-[1/1]"
-            width={100}
-            height={100}
-          />
-        </div>
+      <SheetTrigger>{children}</SheetTrigger>
+      <SheetContent className="overflow-y-scroll">
+        <Image
+          key={id}
+          src={imgUrl}
+          alt={name}
+          className="w-full aspect-[1/1]"
+          width={100}
+          height={100}
+        />
         <div className="flex justify-start gap-4 w-full my-4 mb-2">
           <SheetTitle>{name}</SheetTitle>
           <div className="flex gap-1 flex-wrap">
@@ -97,7 +96,21 @@ export function PokemonDrawer({
         </div>
         <Separator />
         <SheetFooter className="mt-4 flex flex-row flex-wrap align-center justify-end gap-2">
-          <Button variant="outline" className="w-auto flex items-center">
+          <Button
+            variant="outline"
+            className="w-auto flex items-center"
+            onClick={() => {
+              const phrase = new SpeechSynthesisUtterance(
+                `${name}, de type ${types.join("et ")}. Région ${regions
+                  .map(
+                    ({ regionName, regionPokedexNumber }) =>
+                      `${regionName} #${regionPokedexNumber}`
+                  )
+                  .join(", ")}. ${description || "Aucune description"}`
+              );
+              speechSynthesis.speak(phrase);
+            }}
+          >
             <IoPlayCircleOutline />
           </Button>
           {isAdmin && (
@@ -111,14 +124,24 @@ export function PokemonDrawer({
               <CgTrash /> Supprimer
             </Button>
           )}
-          {catched ? (
+          {isCatched ? (
             <p>Attrapé</p>
-          ) : seen ? (
+          ) : isSeen ? (
             <div className="flex items-center gap-4">
               <p>Vu</p>
               <Button
                 onClick={(e) => {
                   e.stopPropagation();
+                  const catched = localStorage.getItem("catched");
+                  const newCachedArray = [
+                    ...(JSON.parse(catched || "[]") || []),
+                    id,
+                  ];
+                  localStorage.setItem(
+                    "catched",
+                    JSON.stringify(newCachedArray)
+                  );
+                  setCatched(newCachedArray);
                 }}
                 variant="outline"
                 className="w-24 flex items-center"
@@ -131,6 +154,14 @@ export function PokemonDrawer({
               <Button
                 onClick={(e) => {
                   e.stopPropagation();
+
+                  const seen = localStorage.getItem("seen");
+                  const newSeenArray = [
+                    ...(JSON.parse(seen || "[]") || []),
+                    id,
+                  ];
+                  localStorage.setItem("seen", JSON.stringify(newSeenArray));
+                  setSeen(newSeenArray);
                 }}
                 variant="outline"
                 className="w-24 flex items-center"
@@ -140,6 +171,25 @@ export function PokemonDrawer({
               <Button
                 onClick={(e) => {
                   e.stopPropagation();
+
+                  const seen = localStorage.getItem("seen");
+                  const newSeenArray = [
+                    ...(JSON.parse(seen || "[]") || []),
+                    id,
+                  ];
+                  localStorage.setItem("seen", JSON.stringify(newSeenArray));
+                  const catched = localStorage.getItem("catched");
+                  const newCachedArray = [
+                    ...(JSON.parse(catched || "[]") || []),
+                    id,
+                  ];
+                  localStorage.setItem(
+                    "catched",
+                    JSON.stringify(newCachedArray)
+                  );
+
+                  setSeen(newSeenArray);
+                  setCatched(newCachedArray);
                 }}
                 variant="outline"
                 className="w-24 flex items-center"

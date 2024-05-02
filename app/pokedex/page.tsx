@@ -10,12 +10,16 @@ import { useContext } from "react";
 import { AppContext } from "@/components/provider/Provider";
 
 export default function Pokedex() {
-  const { isLoggedIn } = useContext(AppContext);
+  const { isLoggedIn, catched, seen } = useContext(AppContext);
 
   if (!isLoggedIn) redirect("/");
 
-  const pokemonsCatched: PokemonInterface[] = pkmns?.slice(24, 28);
-  const pokemonsSeen: PokemonInterface[] = pkmns?.slice(20, 29);
+  const pokemonsCatched: PokemonInterface[] = pkmns?.filter(({ id }) =>
+    catched.includes(id)
+  );
+  const pokemonsSeen: PokemonInterface[] = pkmns?.filter(({ id }) =>
+    seen.includes(id)
+  );
   return (
     <main className="mt-24">
       <div className="flex items-center mb-4 mx-4">
@@ -31,8 +35,8 @@ export default function Pokedex() {
           <section className="mt-4 mb-6 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
             {pokemonsSeen?.map((pokemon: PokemonInterface) => {
               return (
-                <PokemonDrawer key={pokemon.id} pokemon={pokemon} seen={true}>
-                  <PokemonCard pokemon={pokemon} seen={true} />
+                <PokemonDrawer key={pokemon.id} pokemon={pokemon}>
+                  <PokemonCard pokemon={pokemon} />
                 </PokemonDrawer>
               );
             })}
@@ -42,13 +46,8 @@ export default function Pokedex() {
           <section className="mt-4 mb-6 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
             {pokemonsCatched?.map((pokemon: PokemonInterface) => {
               return (
-                <PokemonDrawer
-                  key={pokemon.id}
-                  pokemon={pokemon}
-                  seen={true}
-                  catched={true}
-                >
-                  <PokemonCard pokemon={pokemon} seen={true} catched={true} />
+                <PokemonDrawer key={pokemon.id} pokemon={pokemon}>
+                  <PokemonCard pokemon={pokemon} />
                 </PokemonDrawer>
               );
             })}

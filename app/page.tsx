@@ -8,11 +8,11 @@ import { useContext } from "react";
 import { AppContext } from "@/components/provider/Provider";
 import { redirect } from "next/navigation";
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams: any }) {
   const { isLoggedIn } = useContext(AppContext);
   return (
     <>
-      {isLoggedIn ? <Pokemons /> : <HomeBg />}
+      {isLoggedIn ? <Pokemons searchParams={searchParams} /> : <HomeBg />}
       <Toaster richColors />
     </>
   );

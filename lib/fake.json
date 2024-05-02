@@ -21,7 +21,7 @@
     "pokemons": [
         {
             "name": "Bulbasaur",
-            "description": "",
+            "description": "Bulbizarre est un Pokémon de type Plante/Poison. Il est caractérisé par une forme allongée et une grande bouche qui ressemble à un bulbe. Bulbizarre a une peau verte avec des taches noires et des lignes blanches. Il a également des ailes qui lui permettent de voler et de se déplacer rapidement. \n Bulbizarre est connu pour sa capacité à se nourrir des plantes et des champignons qui poussent dans les ténèbres. Il peut également utiliser ses ailes pour voler et se déplacer dans les forêts sombres. Bulbizarre est également un Pokémon très intelligent et a une mémoire étonnante. Il peut se souvenir des endroits où il a trouvé des aliments et y revenir plus tard.",
             "types": [
                 "GRASS",
                 "POISON"

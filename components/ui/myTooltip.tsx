@@ -19,9 +19,7 @@ export function MyTooltip({
     <TooltipProvider>
       <Tooltip delayDuration={200}>
         <TooltipTrigger asChild>
-          <Button variant="outline" className={clnButton}>
-            {label}
-          </Button>
+          <div className={clnButton}>{label}</div>
         </TooltipTrigger>
         <TooltipContent>
           <p>{title}</p>

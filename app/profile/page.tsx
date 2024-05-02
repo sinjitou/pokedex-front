@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { trainer } from "@/lib/fake.json";
+import { trainer, user } from "@/lib/fake.json";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -18,9 +18,10 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useContext } from "react";
 import { AppContext } from "@/components/provider/Provider";
-const { imgUrl } = trainer;
+const { imgUrl, trainerName } = trainer;
 export default function Pokedex() {
-  const { isLoggedIn } = useContext(AppContext);
+  const { isLoggedIn, userData } = useContext(AppContext);
+
   if (!isLoggedIn) redirect("/");
 
   return (
@@ -43,12 +44,14 @@ export default function Pokedex() {
               <CardContent className="space-y-2">
                 <div className="space-y-1">
                   <Label htmlFor="name">Pseudo</Label>
-                  <Input id="name" placeholder="Mon pseudo" />
+                  <Input
+                    id="name"
+                    placeholder="Mon pseudo"
+                    value={userData.login}
+                    readOnly
+                  />
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button>Enregistrer</Button>
-              </CardFooter>
             </Card>
           </TabsContent>
           <TabsContent value="trainer">
@@ -72,6 +75,8 @@ export default function Pokedex() {
                     id="current"
                     type="text"
                     placeholder="Mon nom de dresseur"
+                    value={trainerName}
+                    readOnly
                   />
                 </div>
               </CardContent>
